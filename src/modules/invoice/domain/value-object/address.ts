@@ -5,17 +5,17 @@ export default class Address {
     _complement: string = "";
     _city: string = "";
     _state: string = "";
-    _zipcode: string = "";
+    _zipCode: string = "";
     
     constructor(street: string, number: number, complement: string, city: string, 
-        state: string, zipcode: string) {
+        state: string, zipCode: string) {
         
         this._street = street;
         this._number = number;
         this._complement = complement;
         this._city = city;
         this._state = state;
-        this._zipcode = zipcode;
+        this._zipCode = zipCode;
         
         this.validate();
     }
@@ -40,8 +40,8 @@ export default class Address {
         return this._state;
     }
 
-    get zipcode(): string {
-        return this._zipcode;
+    get zipCode(): string {
+        return this._zipCode;
     }
 
     validate() {
@@ -51,7 +51,7 @@ export default class Address {
         if (this._number === 0) {
             throw new Error("Number is required");
         }
-        if (this._zipcode.length === 0) {
+        if (this._zipCode.length === 0) {
             throw new Error("Zip is required");
         }
         if (this._city.length === 0) {
@@ -64,7 +64,7 @@ export default class Address {
 
     toString() {
         return `${this._street}, ${this._number}, ${this._complement}, 
-            ${this._city}, ${this._state}, ${this._zipcode}`;
+            ${this._city}, ${this._state}, ${this._zipCode}`;
     }
 
 

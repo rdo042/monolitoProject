@@ -49,7 +49,7 @@ describe("InvoiceFacade test", () => {
       complement: 'APTO 1',
       city: 'City 1',
       state: 'State 1',
-      zipcode: '12345',
+      zipCode: '12345',
       items: products.map((product) => ({
         id: product.id.id,
         name: product.name,
@@ -73,7 +73,7 @@ describe("InvoiceFacade test", () => {
     expect(invoice.complement).toEqual(input.complement);
     expect(invoice.city).toEqual(input.city);
     expect(invoice.state).toEqual(input.state);
-    expect(invoice.zipcode).toEqual(input.zipcode);
+    expect(invoice.zipCode).toEqual(input.zipCode);
    
    
   });
@@ -101,7 +101,7 @@ describe("InvoiceFacade test", () => {
       complement: 'APTO 1',
       city: 'City 1',
       state: 'State 1',
-      zipcode: '12345',
+      zipCode: '12345',
       items: products.map((product) => ({
         id: product.id.id,
         name: product.name,

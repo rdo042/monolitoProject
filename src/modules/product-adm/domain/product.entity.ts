@@ -1,6 +1,8 @@
 import BaseEntity from "../../@shared/domain/entity/base.entity";
 import AggregateRoot from "../../@shared/domain/entity/aggregate-root.interface";
 import Id from "../../@shared/domain/value-object/id.value-object";
+import NotificationError from "../../@shared/domain/notification/notitication.error";
+import ProductValidatorFactory from "../factory/product.validator.factory";
 
 type ProductProps = {
   id?: Id;
@@ -24,7 +26,18 @@ export default class Product extends BaseEntity implements AggregateRoot {
     this._description = props.description;
     this._purchasePrice = props.purchasePrice;
     this._stock = props.stock;
+    this.validate();
+
+    if (this.notification.hasErrors()) {
+        throw new NotificationError(this.notification.getErrors());
+    }
+    
   }
+
+  validate() {
+    ProductValidatorFactory.create().validate(this);
+  }
+
 
   get name(): string {
     return this._name;

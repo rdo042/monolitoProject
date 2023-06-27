@@ -14,7 +14,8 @@ export default class GenerateInvoiceUseCase {
 
   async execute(input: GenerateInvoiceUseCaseInputDto): Promise<GenerateInvoiceUseCaseOutputDto> {
     
-    const addressInt = new Address(input.street, Number(input.number), input.complement, input.city, input.state, input.zipcode);
+    const addressInt = new Address(input.street, Number(input.number), input.complement, input.city, 
+      input.state, input.zipCode);
     
     const items = input.items.map((item) => {
       return new Product({
@@ -44,7 +45,7 @@ export default class GenerateInvoiceUseCase {
       complement: invoice.address.complement,
       city: invoice.address.city,
       state: invoice.address.state,
-      zipcode: invoice.address.zipcode,
+      zipCode: invoice.address.zipCode,
       items: invoice.items.map((product) => ({
         id: product.id.id,
         name: product.name,

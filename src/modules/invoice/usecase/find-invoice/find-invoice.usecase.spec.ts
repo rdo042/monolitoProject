@@ -53,7 +53,7 @@ describe("Find Invoice Usecase unit test", () => {
     expect(result.address.city).toEqual(invoice.address.city);
     expect(result.address.state).toEqual(invoice.address.state);
     expect(result.address.complement).toEqual(invoice.address.complement);
-    expect(result.address.zipcode).toEqual(invoice.address.zipcode);
+    expect(result.address.zipCode).toEqual(invoice.address.zipCode);
     expect(result.createdAt).toEqual(invoice.createdAt);
     expect(result.total).toEqual(invoice.total());
     expect(result.total).toEqual(30);

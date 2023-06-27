@@ -60,7 +60,7 @@ describe("InvoiceRepository test", () => {
     expect(invoiceDb.complement).toBe(invoice.address.complement);
     expect(invoiceDb.state).toBe(invoice.address.state);
     expect(invoiceDb.city).toBe(invoice.address.city);
-    expect(invoiceDb.zipcode).toBe(invoice.address.zipcode);
+    expect(invoiceDb.zipCode).toBe(invoice.address.zipCode);
     expect(invoiceDb.items.length).toBe(2);
     expect(invoiceDb.items[0].id).toBe("1");
     expect(invoiceDb.items[0].name).toBe("Product 1");
@@ -100,7 +100,7 @@ describe("InvoiceRepository test", () => {
     expect(invoiceDb.address.complement).toBe(invoice.address.complement);
     expect(invoiceDb.address.state).toBe(invoice.address.state);
     expect(invoiceDb.address.city).toBe(invoice.address.city);
-    expect(invoiceDb.address.zipcode).toBe(invoice.address.zipcode);
+    expect(invoiceDb.address.zipCode).toBe(invoice.address.zipCode);
     expect(invoiceDb.createdAt).not.toBeNull();
     expect(invoiceDb.updatedAt).not.toBeNull();
     

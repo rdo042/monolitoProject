@@ -12,7 +12,7 @@ export interface FindInvoiceUseCaseOutputDto {
     complement: string;
     city: string;
     state: string;
-    zipcode: string;
+    zipCode: string;
   };
   items: {
     id: string;

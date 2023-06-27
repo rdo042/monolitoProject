@@ -22,7 +22,7 @@ export default class InvoiceRepository implements InvoiceGateway {
       complement: invoice.address.complement,
       city: invoice.address.city,
       state: invoice.address.state,
-      zipcode: invoice.address.zipcode,
+      zipCode: invoice.address.zipCode,
       items: invoice.items.map((item) => ({
           id: item.id.id,
           name: item.name,
@@ -39,13 +39,13 @@ export default class InvoiceRepository implements InvoiceGateway {
     );
   }
 
-  async find(id: string): Promise<Invoice> {
+  async find(idItem: string): Promise<Invoice> {
    
     let invoiceModel;
 
     try {
       invoiceModel = await InvoiceModel.findOne({ 
-        where: { id: id },
+        where: { id: idItem },
         include: ["items"],
       });
     } catch (error) {
@@ -62,7 +62,8 @@ export default class InvoiceRepository implements InvoiceGateway {
         return it;
     });
 
-    const address = new Address(invoiceModel.street, invoiceModel.number, invoiceModel.complement, invoiceModel.city, invoiceModel.state, invoiceModel.zipcode);
+    const address = new Address(invoiceModel.street, invoiceModel.number, invoiceModel.complement, invoiceModel.city, 
+      invoiceModel.state, invoiceModel.zipCode);
 
     const invoice = new Invoice({
       id: new Id(invoiceModel.id),

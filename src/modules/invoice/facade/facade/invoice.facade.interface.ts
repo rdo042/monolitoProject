@@ -7,7 +7,7 @@ export interface GenerateInvoiceFacadeInputDto {
   complement: string;
   city: string;
   state: string;
-  zipcode: string;
+  zipCode: string;
   items: {
     id: string;
     name: string;
@@ -29,7 +29,7 @@ export interface FindInvoiceFacadeOutputDto {
     complement: string;
     city: string;
     state: string;
-    zipcode: string;
+    zipCode: string;
   };
   items: {
     id: string;
@@ -41,6 +41,6 @@ export interface FindInvoiceFacadeOutputDto {
 }
 
 export default interface InvoiceFacadeInterface {
-  generate(input: GenerateInvoiceFacadeInputDto): Promise<void>;
+  generate(input: GenerateInvoiceFacadeInputDto): Promise<string>;
   find(input: FindInvoiceFacadeInputDto): Promise<FindInvoiceFacadeOutputDto>;
 }

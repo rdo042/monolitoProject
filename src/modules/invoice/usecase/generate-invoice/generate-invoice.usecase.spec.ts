@@ -1,6 +1,5 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Product from "../../domain/entity/product.entity";
-import InvoiceRepository from "../../repository/invoice.repository";
 import GenerateInvoiceUseCase from "./generate-invoice.usecase";
 
 const MockRepository = () => {
@@ -27,7 +26,7 @@ describe("Generate Invoice Usecase unit test", () => {
       complement: 'APTO 1',
       city: 'City 1',
       state: 'State 1',
-      zipcode: '12345',
+      zipCode: '12345',
       items: products.map((product) => ({
         id: product.id.id,
         name: product.name,
@@ -46,7 +45,7 @@ describe("Generate Invoice Usecase unit test", () => {
     expect(result.complement).toEqual(input.complement);
     expect(result.city).toEqual(input.city);
     expect(result.state).toEqual(input.state);
-    expect(result.zipcode).toEqual(input.zipcode);
+    expect(result.zipCode).toEqual(input.zipCode);
     expect(result.total).toEqual(30);
     expect(result.items.length).toBe(2);
     expect(result.items[0].id).toBe("1");
