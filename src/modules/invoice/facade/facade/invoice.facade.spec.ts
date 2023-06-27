@@ -6,7 +6,7 @@ import Product from "../../domain/entity/product.entity";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import InvoiceFacadeFactory from "../../factory/invoice.facade.factory";
 import { InvoiceModel } from "../../repository/invoice.model";
-import { ProductModel } from "../../repository/product.model";
+import { ProductInvoiceModel } from "../../repository/product-invoice.model";
 
 
 describe("InvoiceFacade test", () => {
@@ -20,12 +20,12 @@ describe("InvoiceFacade test", () => {
       sync: { force: true },
     });
 
-    await sequelize.addModels([InvoiceModel, ProductModel]);
+    await sequelize.addModels([InvoiceModel, ProductInvoiceModel]);
     await sequelize.sync();
   });
 
   afterEach(async () => {
-    //await sequelize.close();
+    await sequelize.close();
   });
 
   it("should create a invoice", async () => {

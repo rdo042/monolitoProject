@@ -1,5 +1,7 @@
 import BaseEntity from "../../../@shared/domain/entity/base.entity";
+import NotificationError from "../../../@shared/domain/notification/notitication.error";
 import Id from "../../../@shared/domain/value-object/id.value-object";
+import InvoiceProductValidatorFactory from "../../factory/invoice-product.validator.factory";
 
 type ProductProps = {
   id?: Id;
@@ -15,6 +17,16 @@ export default class Product extends BaseEntity {
     super(props.id);
     this._name = props.name;
     this._price = props.price;
+
+    this.validate();
+
+    if (this.notification.hasErrors()) {
+        throw new NotificationError(this.notification.getErrors());
+    }
+  }
+
+  validate() {
+    InvoiceProductValidatorFactory.create().validate(this);
   }
 
   get name(): string {

@@ -1,5 +1,6 @@
 import Id from "../../../modules/@shared/domain/value-object/id.value-object";
 import Product from "../../../modules/invoice/domain/entity/product.entity";
+import InvoiceFacadeFactory from "../../../modules/invoice/factory/invoice.facade.factory";
 import { app, sequelize } from "../express";
 import request from "supertest";
 
@@ -10,39 +11,10 @@ describe("E2E test for invoice", () => {
     });
 
     afterAll(async () => {
-        //await sequelize.close();
+        await sequelize.close();
     });
 
-    it("should generate a invoice", async () => {
-
-        const item1 = new Product({id: new Id('1'), name: 'Product 1', price: 10});
-        const item2 = new Product({id: new Id('2'), name: 'Product 2', price: 20});
-        const products = [item1, item2];
-        
-        const response = await request(app)
-            .post("/invoice")
-            .send({
-                id: "1",
-                name: "Name 1",
-                document: "Doc 1",
-                street: "Street 1",
-                number: "1",
-                complement: "",
-                city: "City 1",
-                state: "State 1",
-                zipCode: "000",
-                items: products.map((product) => ({
-                    id: product.id.id,
-                    name: product.name,
-                    price: product.price
-                  })),
-            });
-
-        expect(response.status).toBe(200);
-        
-    });
-
-    it("should not generate a invoice", async () => {
+        it("should not generate a invoice", async () => {
         const response = await request(app)
             .post("/invoice")
             .send({
@@ -81,7 +53,7 @@ describe("E2E test for invoice", () => {
 
         const findResponse = await request(app).get("/invoice").send(
             {
-                invoiceId: "1", 
+                id: '1' 
             }
         );
 

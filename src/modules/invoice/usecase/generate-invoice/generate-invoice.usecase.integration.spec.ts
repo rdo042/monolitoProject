@@ -4,7 +4,7 @@ import Product from "../../domain/entity/product.entity";
 import InvoiceRepository from "../../repository/invoice.repository";
 import GenerateInvoiceUseCase from "./generate-invoice.usecase";
 import { InvoiceModel } from "../../repository/invoice.model";
-import { ProductModel } from "../../repository/product.model";
+import { ProductInvoiceModel } from "../../repository/product-invoice.model";
 
 describe("Generate Invoice Usecase unit test", () => {
 
@@ -18,7 +18,7 @@ describe("Generate Invoice Usecase unit test", () => {
       sync: { force: true },
     });
 
-    await sequelize.addModels([InvoiceModel, ProductModel]);
+    await sequelize.addModels([InvoiceModel, ProductInvoiceModel]);
     await sequelize.sync();
   });
 

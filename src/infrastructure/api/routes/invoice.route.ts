@@ -11,13 +11,16 @@ invoiceRoute.post('/', async (req: Request, res: Response) => {
 
     try {
         
-        const items = req.body.items.map((item: { id: string; name: any; price: any; }) => {
-            return new Product({
-              id: new Id(item.id),
-              name: item.name,
-              price: Number(item.price),
+        let items = req.body.items.map((a: any) => {
+            let it = new Product({
+              id: a.id,
+              name: a.name,
+              price: a.price
             });
-          });
+            
+            return it;
+        });
+        
 
         const invoiceInput = {
             id: req.body.id,
@@ -50,7 +53,7 @@ invoiceRoute.get('/', async (req: Request, res: Response) => {
     try {
 
         const invoiceId = {
-            id: req.body.invoiceId
+            id: req.body.id
         }
 
         const output = await facade.find(invoiceId);
@@ -60,5 +63,6 @@ invoiceRoute.get('/', async (req: Request, res: Response) => {
     } catch(err) {
         res.status(500).send(err);
     }
+    
 
 });

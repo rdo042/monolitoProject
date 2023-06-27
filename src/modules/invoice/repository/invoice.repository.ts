@@ -6,7 +6,7 @@ import InvoiceGateway from "../gateway/invoice.gateway";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import Address from "../domain/value-object/address";
 import { InvoiceModel } from "./invoice.model";
-import { ProductModel } from "./product.model";
+import { ProductInvoiceModel } from "./product-invoice.model";
 
 
 export default class InvoiceRepository implements InvoiceGateway {
@@ -32,9 +32,9 @@ export default class InvoiceRepository implements InvoiceGateway {
       updatedAt: invoice.updatedAt,
     },
     {
-        include: [
-          {model: ProductModel},
-        ],
+      include: [
+        {model: ProductInvoiceModel},
+      ],
     }
     );
   }
@@ -46,12 +46,14 @@ export default class InvoiceRepository implements InvoiceGateway {
     try {
       invoiceModel = await InvoiceModel.findOne({ 
         where: { id: idItem },
-        include: ["items"],
+        include: [{ model: ProductInvoiceModel }],
+        rejectOnEmpty: true,
       });
     } catch (error) {
         throw new Error("Invoice not found");
     }
 
+    
     let items = invoiceModel.items.map((itemModel) => {
         let it = new Product({
           id: new Id(itemModel.id),
